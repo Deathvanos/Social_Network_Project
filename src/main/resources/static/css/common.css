@@ -1,0 +1,21 @@
+
+
+.navbar {
+    padding: .2rem 1rem;
+    /*#background-color: #67819A!important;*/
+}
+
+
+.bodySize {
+    min-height: 87vh;
+}
+
+.no-padding {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.with-padding {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+}

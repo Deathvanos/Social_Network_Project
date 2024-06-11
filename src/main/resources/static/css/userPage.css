@@ -1,0 +1,25 @@
+.profile-header {
+    padding: 20px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.user-name {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+}
+
+.user-subtitle {
+    text-align: center;
+}
+
+.content-input {
+    margin: 20 px;
+    display: inline-block;
+}
+
+.start-discussion-button {
+    margin: 20px;
+    display: inline-block;
+}

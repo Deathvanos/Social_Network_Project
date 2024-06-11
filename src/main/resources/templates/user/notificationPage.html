@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head>
+    <title>Notifications</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.6.2/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" href="/css/common.css"/>
+    <link rel="stylesheet" href="/css/chatPage.css"/>
+</head>
+<body>
+<header th:insert="~{common/header :: header}"></header>
+<div class="container-fluid">
+    <div class="row bodySize">
+        <div class="col-sm-2" style="background-color:#C2B7C7;"></div>
+        <div class="col-sm-8">
+
+            <div th:if="${notifications.size() == 0}" class="discussion-info">
+                You don't have any notification.
+            </div>
+
+            <div th:each="notification : ${notifications}" class="discussion-item discussion-item-link">
+                <a th:href="${notification.getLink()}" class="link">
+                    <p th:if="${!notification.isReadStatus()}" th:text="${notification.getTitle()}" class="discussion-small-title destination-name"></p>
+                    <p th:if="${notification.isReadStatus()}" th:text="${notification.getTitle()}" class="discussion-small-title"></p>
+                    <p th:text="${notification.getDate()}" class="message-timestamp"></p>
+                </a>
+            </div>
+
+        </div>
+        <div class="col-sm-2" style="background-color:#C2B7C7;"></div>
+    </div>
+</div>
+<footer th:insert="~{common/footer :: footer}"></footer>
+<script> th:src="@{/webjars/bootstrap/4.6.2/css/bootstrap.min.css}"</script>
+</body>
+</html>

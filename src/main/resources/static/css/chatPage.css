@@ -1,0 +1,99 @@
+.discussion-field {
+    padding-left: 30px;
+    padding-right: 20px;
+}
+
+.discussion-title {
+    font-size: 30px;
+    margin: 10px 0 20px 0;
+}
+
+.message-container {
+  background-color: #f2f2f2;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.message-content {
+  font-size: 14px;
+}
+
+.message-sender {
+  font-weight: bold;
+  color: #333;
+}
+
+.message-timestamp {
+  font-size: 12px;
+  color: #999;
+  margin: 0px;
+}
+
+.discussion-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  float: left;
+  width: 35%;
+}
+
+.discussion-item {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.discussion-item-link:hover {
+  background-color: #f2f2f2;
+}
+
+.discussion-item-link.active {
+  background-color: #e0e0e0;
+}
+
+.discussion-small-title {
+    color: black;
+    margin: 0px;
+}
+
+.destination-name {
+  font-weight: bold;
+}
+
+.link:hover {
+  text-decoration: none;
+}
+
+.discussion-info {
+    text-align: center;
+    margin: 100px 0;
+}
+
+.form-group-inline {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+.create-discussion-form-item {
+    font-size: 14px;
+    height: 30px;
+    padding: 0px 6px;
+    margin: 0;
+}
+
+.create-discussion-form-input {
+     width: 30px;
+ }
+
+.create-discussion-label {
+    margin-bottom: 5px;
+    font-style: italic;
+    font-size: 15px;
+}
+
+.message-send-button {
+    margin-top: 10px;
+}
+

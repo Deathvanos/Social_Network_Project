@@ -1,0 +1,124 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+	<head>
+		<title>Main Page</title>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE-edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.6.2/css/bootstrap.min.css}"/>
+		<link rel="stylesheet" href="/css/common.css"/>
+	</head>
+	<body>
+
+		<header th:insert="~{common/header :: header}"></header>
+
+
+
+
+		<div class="container-fluid">
+			<div class="row bodySize">
+				<div class="col-sm-2" style="background-color:#C2B7C7;"></div>
+
+				<div class="col-sm-8 text-justify">
+
+
+					<div class="row">
+						<div class="col-sm-4">
+							<a href="https://www.isep.fr/"><img th:src="@{/images/IsepLogo.svg}" width="50%" alt="" src=''></a>
+						</div>
+						<div class="col-sm-4"></div>
+						<div class="col-sm-4 text-right">
+							<strong>A2 – S4 – 2023/2024 – II.2415</strong><br>
+							<strong>Advanced Algorithms and Programming</strong><br>
+							<strong>Semester Project</strong>
+						</div>
+					</div>
+
+					<h1 class="text-center mb-4">TSN: Tailored Social Network </h1>
+
+
+					<div id="accordion">
+						<div class="card center">
+							<div class="card-header" style="background-color: white"><a class="card-link" data-toggle="collapse" href="#collapse1" style="color:black;">
+								<h3>About us</h3></a></div>
+							<div id="collapse1" class="collapse" data-parent="#accordion"><div class="card-body">
+								<p>We are three student from ISEP School : Charles Mailley, Lisa Fuant and Salah Musthafa</p>
+								<ul>
+									<li>Deliver  at  the  end  of  the  project  a  report  summarizing  all  the  work  of  the  team during the project.</li>
+									<li>A  presentation  of  the  project  will  be  scheduled  at  the  end  of  the  semester  to evaluate and validate your work in the project.</li>
+								</ul>
+							</div></div>
+						</div>
+
+						<div class="card">
+							<div class="card-header" style="background-color: white"><a class="card-link" data-toggle="collapse" href="#collapse2" style="color:black;">
+								<h3>General presentation</h3></a></div>
+							<div id="collapse2" class="collapse" data-parent="#accordion"><div class="card-body">
+								<p>
+									The project aims to design and develop a TSN (Tailored Social Network) platform that offers
+									advanced functionalities beyond traditional platforms like Facebook. The platform must be
+									based  on  a  graph  structure,  inspired  by  the  FOAF  (Friend  of  a  Friend)  Ontology  (Fig.  1),
+									enabling users to connect, interact, and share content in a more personalized and intuitive manner.
+								</p>
+
+								<img th:src="@{/images/index-graph.png}" width="100%" alt="" src=''>
+
+								The TSN platform take into consideration the following features:
+								<ul>
+									<li>
+										<span style="text-decoration: underline;">Graph-Based  Networking:</span>
+										Implement  a  graph-based  data  structure  to  represent user connections and relationships.
+									</li>
+									<li>
+										<span style="text-decoration: underline;">Privacy  Controls:</span>
+										Provide  users  with  fine-grained  privacy  settings  to  control  the visibility of their posts and personal information.
+									</li>
+									<li>
+										<span style="text-decoration: underline;">Customizable  User  Profiles:</span>
+										Allow  users  to  create  rich,  customizable  profiles.
+									</li>
+									<li>
+										<span style="text-decoration: underline;">Intuitive User Interface:</span>
+										Design an intuitive user interface for seamless navigation and interaction.
+									</li>
+									<li>
+										<span style="text-decoration: underline;">Messaging  and  Notifications:</span>
+										Implement  real-time  messaging  and  notification features to keep users updated on their network activities.									</li>
+									<li>
+										<span style="text-decoration: underline;">Content Sharing and Collaboration:</span>
+										Enable users to share various types of content (text) and collaborate on projects or events.
+									</li>
+								</ul>
+							</div></div>
+						</div>
+
+						<div class="card">
+							<div class="card-header" style="background-color: white"><a class="card-link" data-toggle="collapse" href="#collapse4" style="color:black;">
+								<h3>Technologies to use</h3></a></div>
+							<div id="collapse4" class="collapse" data-parent="#accordion"><div class="card-body">
+								<p>
+									For developing  the  TSN  platform, we use technologies we learned in the other cours:
+									We use Java Spring Boot for the back and the Frameworks Bootstrap for the front.
+									Our database is in MySQL.
+									We used GIT to collaborate together too.
+								</p>
+							</div></div>
+						</div>
+					</div>
+
+
+				</div>
+				<div class="col-sm-2" style="background-color:#C2B7C7;"></div>
+			</div>
+		</div>
+
+
+		<footer th:insert="~{common/footer :: footer}"></footer>
+
+		<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+		<script th:src="@{/webjars/bootstrap/4.6.2/js/bootstrap.bundle.min.js}"></script>
+
+
+
+	</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head>
+    <title>Search</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.6.2/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" href="/css/common.css"/>
+    <link rel="stylesheet" href="/css/userPage.css"/>
+    <script src="/js/userPage.js"></script>
+</head>
+<body>
+<header th:insert="~{common/header :: header}"></header>
+<div class="container-fluid">
+    <div class="row bodySize">
+        <div class="col-sm-2" style="background-color:#C2B7C7;"></div>
+        <div class="col-sm-8">
+
+
+            <h1 >Search for a user</h1>
+
+            <form th:action="@{/searchUser}" method="POST">
+                <div id="create-discussion-form" class="form-group" style="margin-bottom:0">
+                    <input type="text" id="userRequest" name="userRequest">
+                    <button type="submit">Search</button>
+                </div>
+            </form>
+
+            <div th:each="user : ${userList}">
+                <a th:href="'user/' + ${user.getId()}">
+                    <p th:text="${user.getFirstName()} + ' ' + ${user.getLastName()}"></p>
+                </a>
+            </div>
+
+
+        </div>
+        <div class="col-sm-2" style="background-color:#C2B7C7;"></div>
+    </div>
+</div>
+<footer th:insert="~{common/footer :: footer}"></footer>
+<script> th:src="@{/webjars/bootstrap/4.6.2/css/bootstrap.min.css}"</script>
+</body>
+</html>
+
+
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head>
+    <title>Search</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.6.2/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" href="/css/common.css"/>
+    <link rel="stylesheet" href="/css/userPage.css"/>
+    <script src="/js/userPage.js"></script>
+</head>
+<body>
+<header th:insert="~{common/header :: header}"></header>
+<div class="container-fluid">
+    <div class="row bodySize">
+        <div class="col-sm-2" style="background-color:#C2B7C7;"></div>
+        <div class="col-sm-8">
+
+
+            <h1 >Search for a user</h1>
+
+            <form th:action="@{/searchUser}" method="POST">
+                <div id="create-discussion-form" class="form-group" style="margin-bottom:0">
+                    <input type="text" id="userRequest" name="userRequest">
+                    <button type="submit">Search</button>
+                </div>
+            </form>
+
+            <div th:each="user : ${userList}">
+                <a th:href="'user/' + ${user.getId()}">
+                    <p th:text="${user.getFirstName()} + ' ' + ${user.getLastName()}"></p>
+                </a>
+            </div>
+
+
+        </div>
+        <div class="col-sm-2" style="background-color:#C2B7C7;"></div>
+    </div>
+</div>
+<footer th:insert="~{common/footer :: footer}"></footer>
+<script> th:src="@{/webjars/bootstrap/4.6.2/css/bootstrap.min.css}"</script>
+</body>
+</html>

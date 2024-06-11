@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+	<head>
+		<title>Login</title>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE-edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.6.2/css/bootstrap.min.css}"/>
+		<link rel="stylesheet" href="/css/common.css"/>
+	</head>
+	<body>
+
+		<div class="container-fluid text-center" style="background-color:#C2B7C7;">
+			<div class="row vh-100">
+				<div class="col-sm-4"></div>
+
+
+				<div class="col-sm-4 d-flex flex-column justify-content-center">
+					<div class='rounded' style="background-color:white;">
+						<h1>Login</h1>
+						<a href="/home"><img th:src="@{/images/logo.png}" alt="Image description" width="75px" src=''></a>
+						<form class="form-group mt-md-4" action="#" th:action="@{/login}" th:object="${user}" method="POST">
+								<div class="form-outline mb-3 d-flex justify-content-center align-items-center col-10 offset-1">
+									<label for="email" hidden>email</label>
+									<input class="form-control" type="text" th:field="*{email}" id="email" placeholder="pseudo@exemple.com" required>
+								</div>
+								<div class="form-outline mb-3 d-flex justify-content-center align-items-center col-10 offset-1">
+									<label for="password" hidden>password</label>
+									<input class="form-control input-short" type="password" th:field="*{password}" id="password"  required>
+								</div>
+								<div th:if="${loginError}"><p class="text-danger">Email ou mot de passe incorrect</p></div>
+								<button type="submit" class="btn btn-light bg-primary mt-3">Sign In</button>
+								<p><a class="btn text-primary" href="#">Forgot your password?</a></p>
+								<a class="btn btn-light bg-success" href="/subscription">Create a new account</a>
+						</form>
+					</div>
+
+				</div>
+
+
+				<div class="col-sm-4"></div>
+			</div>
+		</div>
+
+		<footer th:insert="~{common/footer :: footer}"></footer>
+		<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+		<script th:src="@{/webjars/bootstrap/4.6.2/js/bootstrap.bundle.min.js}"></script>
+	</body>
+</html>

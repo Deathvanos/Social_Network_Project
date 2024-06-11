@@ -1,0 +1,144 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+	<head>
+		<title>User Profil</title>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE-edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.6.2/css/bootstrap.min.css}"/>
+		<link th:rel="stylesheet" th:href="@{/webjars/bootstrap-icons/1.11.3/font/bootstrap-icons.css}"/>
+		<link th:rel="stylesheet" th:href="@{/webjars/cropperjs/1.1.3/cropper.min.css}"/>
+		<link rel="stylesheet" href="/css/user-profile.css"/>
+		<link rel="stylesheet" href="/css/common.css"/>
+	</head>
+	<body>
+		<header th:insert="~{common/header :: header}"></header>
+
+		<div class="container-fluid">
+		<div class="row bodySize">
+			<div class="col-sm-2" style="background-color:#C2B7C7;"></div>
+
+			<div class="col-sm-8 no-padding">
+				<!-- User Parameters -->
+				<div style="background-color:#7B6386;">
+					<h1 class="text-white text-center">Information Utilisateur :</h1>
+					<div class="row" style="color:white">
+						<div class="col align-content-center">
+							<label class="px-2 pt-3 font-weight-bold">Nom :</label>
+							<span th:text="${user.getLastName()}"></span>
+							<br>
+							<label class="px-2 font-weight-bold">Prénom :</label>
+							<span th:text="${user.getFirstName()}"></span>
+							<br>
+							<label class="px-2 font-weight-bold">Username :</label>
+							<span th:text="${user.getUsername()}"></span>
+						</div>
+						<div class="col align-content-center">
+							<label class="px-2 pt-3 font-weight-bold">Email :</label>
+							<span th:text="${user.getEmail()}"></span>
+							<br>
+							<label class="px-2 font-weight-bold">Mot de passe :</label>
+							<span>**********</span>
+						</div>
+						<div class="col align-content-center">
+							<button class="btn btn-light btn-outline-success d-block mx-auto" data-toggle="modal" data-target="#userSettingsModal">
+								Modifier information <i class="bi bi-pencil-square"></i>
+							</button>
+						</div>
+					</div>
+				</div>
+
+				<!-- Add Content -->
+				<form action="#" th:action="@{/user-profile}" th:object="${content}" method="POST">
+					<div class="mt-3" style="display: flex; flex-direction: column; align-items: center;">
+						<label for="newContent">Create new content</label>
+						<textarea id="newContent" name="newContent" th:field="*{texte}" maxlength="2047" rows="4" cols="50" required></textarea>
+						<button type="submit" class="btn btn-outline-success mt-3">Commit</button>
+					</div>
+				</form>
+				<hr>
+
+
+				<h2 class="text-center">My contents</h2>
+				<!-- Content List -->
+				<p th:if="${contents == null}" th:text="'No content yet'"></p>
+				<div th:unless="${contents == null}">
+					<div th:each="content : ${contents}">
+						<div th:id="${content.content.getId()}" class="d-flex justify-content-center mt-4 mb-4">
+							<div class="card w-75">
+								<div class="card-header">
+									<div class="d-flex justify-content-between align-items-center">
+										<div>
+											<strong th:text="${content.content.getUserPseudo()}"></strong>
+											<br>
+											<small th:utext="${#dates.format(content.content.postedDate, 'dd/MM/yyyy HH:mm')}"></small>
+										</div>
+										<a th:href="'/delete_content/'+${content.content.getId()}" class="btn btn-warning"><i class="bi bi-trash"></i></a>
+									</div>
+								</div>
+								<div class="card-body">
+									<p class="card-text" th:text="${content.content.getTexte()}"></p>
+								</div>
+								<div class="card-footer d-flex justify-content-between align-items-center">
+									<span th:text="${content.content.getLikeCounter()}"></span>
+									<a th:href="'/add_like_user-profile/'+${content.content.getId()}" th:class="${content.liked ? 'btn btn-primary' : 'btn btn-outline-primary'}">Like</a>
+
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+
+
+
+
+			</div>
+
+			<div class="col-sm-2" style="background-color:#C2B7C7;"></div>
+		</div>
+		</div>
+
+		<!-- Popup : Modal Modify user info-->
+		<div class="modal fade" id="userSettingsModal" tabindex="-1" role="dialog" aria-labelledby="userSettingsModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="userSettingsModalLabel">Modification information personnel</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<form th:action="@{/modify-user}" method="post" id="modify-user-info-form">
+							<div class="form-group">
+								<label class="font-weight-bold" for="email">Adresse mail:</label>
+								<input type="email" class="form-control" id="email" name="email">
+								<p class="text-danger" id="emailError"></p>
+							</div>
+							<div class="form-group">
+								<label class="font-weight-bold" for="username">Pseudonym:</label>
+								<input type="text" class="form-control" id="username" name="username">
+								<p class="text-danger" id="usernameError"></p>
+							</div>
+							<div class="form-group">
+								<label class="font-weight-bold" for="password">Mot de passe:</label>
+								<input type="password" class="form-control" id="password" name="password">
+							</div>
+							<div class="text-center">
+								<button type="submit" class="btn btn-outline-success">Modifier</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<footer th:insert="~{common/footer :: footer}"></footer>
+		<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+		<script th:src="@{/webjars/cropperjs/1.1.3/cropper.min.js}"></script>
+		<script th:src="@{/webjars/bootstrap/4.6.2/js/bootstrap.bundle.min.js}"></script>
+		<script src="/js/user-profile.js"></script>
+	</body>
+</html>

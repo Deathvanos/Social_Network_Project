@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head>
+  <title>User Page</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE-edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.6.2/css/bootstrap.min.css}"/>
+  <link rel="stylesheet" href="/css/common.css"/>
+    <link rel="stylesheet" href="/css/userPage.css"/>
+  <script src="/js/userPage.js"></script>
+</head>
+<body>
+<header th:insert="~{common/header :: header}"></header>
+<div class="container-fluid">
+  <div class="row bodySize">
+    <div class="col-sm-2" style="background-color:#C2B7C7;"></div>
+    <div class="col-sm-8">
+
+      <div th:if="${user == null}">
+        This user can't be found.
+      </div>
+
+      <div th:if="${user != null}">
+          <div class="profile-header">
+            <h1 th:text="${displayedUser.getFirstName()} + ' ' + ${displayedUser.getLastName()}" class="user-name"></h1>
+            <p th:text="${displayedUser.getUsername}" class="user-subtitle"></p>
+          </div>
+
+          <form th:action="@{/sendMessage}" th:object="${newMessage}" method="POST">
+            <div id="create-discussion-form" class="form-group" style="margin-bottom:0">
+                <button type="button" onclick="addContentInput()" class="btn btn-outline-success start-discussion-button"></i>
+                  Start a discussion
+                </button>
+                <input type="hidden" th:field="*{destinationId}" id="destinationId" name="destinationId">
+                <input type="hidden" th:field="*{senderId}" id="senderId" name="senderId">
+                <input
+                        type="hidden"
+                        th:field="*{content}"
+                        id="content"
+                        name="content"
+                        placeholder="Enter a message..."
+                        class="content-input"
+                >
+            </div>
+          </form>
+
+          <form th:action="@{/sendFriendRequest}" method="post">
+              <input type="hidden" name="friendId" th:value="${displayedUser.id}" />
+              <button type="submit" class="btn btn-outline-success start-discussion-button">Send Friend Request</button>
+          </form>
+
+          <p th:if="${contents == null}" th:text="'No content yet'"></p>
+          <div th:unless="${contents == null}">
+              <div th:each="content : ${contents}">
+                  <div th:id="${content.content.getId()}" class="d-flex justify-content-center mt-4 mb-4">
+                      <div class="card w-75">
+                          <div class="card-header">
+                              <strong th:text="${content.content.getUserPseudo()}"></strong>
+                              <br>
+                              <small th:utext="${#dates.format(content.content.postedDate, 'dd/MM/yyyy HH:mm')}"></small>
+                          </div>
+                          <div class="card-body">
+                              <p class="card-text" th:text="${content.content.getTexte()}"></p>
+                          </div>
+                          <div class="card-footer d-flex justify-content-between align-items-center">
+                              <span th:text="${content.content.getLikeCounter()}"></span>
+                              <a th:href="'/add_like_main_user/'+${content.content.getId()}" th:class="${content.liked ? 'btn btn-primary' : 'btn btn-outline-primary'}">Like</a>
+
+                          </div>
+                      </div>
+                  </div>
+
+              </div>
+          </div>
+      </div>
+
+    </div>
+    <div class="col-sm-2" style="background-color:#C2B7C7;"></div>
+  </div>
+</div>
+<footer th:insert="~{common/footer :: footer}"></footer>
+<script> th:src="@{/webjars/bootstrap/4.6.2/css/bootstrap.min.css}"</script>
+</body>
+</html>

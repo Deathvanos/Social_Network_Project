@@ -1,0 +1,98 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head>
+    <title>Friend</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.6.2/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" href="/css/common.css"/>
+</head>
+<body>
+<header th:insert="~{common/header :: header}"></header>
+
+<div class="container-fluid">
+    <div class="row bodySize">
+        <div class="col-sm-2" style="background-color:#C2B7C7;"></div>
+
+        <div class="col-sm-8">
+
+
+            <p th:if="${pendingRequests == null || pendingRequests.isEmpty()}"></p>
+            <div th:unless="${pendingRequests == null || pendingRequests.isEmpty()}">
+                <h2 class="text-center">Pending Friend Requests</h2>
+                <div class="row">
+                    <div th:each="request : ${pendingRequests}" class="col-sm-3">
+                        <div class="card mt-4 mb-4">
+                            <div class="card-body text-center">
+                                <span class="card-text" th:text="${request.user.username}"></span>
+                                sent you a friend request
+                            </div>
+                            <div class="card-footer button text-center">
+                                <form th:action="@{/acceptFriendRequest}" method="post">
+                                    <input type="hidden" name="friendId" th:value="${request.user.id}" />
+                                    <button class="btn btn-success" type="submit">Accept</button>
+                                </form>
+                                <form th:action="@{/declineFriendRequest}" method="post">
+                                    <input type="hidden" name="friendId" th:value="${request.user.id}" />
+                                    <button class="btn btn-danger" type="submit">Decline</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <h2 class="text-center">List of Friends</h2>
+            <p th:if="${friends == null || friends.isEmpty()}" th:text="'You have no friend'"></p>
+            <div th:unless="${friends == null || friends.isEmpty()}">
+                <div class="row">
+                    <div th:each="friend : ${friends}" class="col-sm-3">
+                        <div class="card mt-4 mb-4">
+                            <div class="card-body text-center">
+                                <span class="card-text" th:text="${friend.username}"></span>
+                            </div>
+                            <div class="card-footer button text-center">
+                                <form th:action="@{/removeFriend}" method="post">
+                                    <input type="hidden" name="friendId" th:value="${friend.id}" />
+                                    <button class="btn btn-danger" type="submit">Remove Friend</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <h2 class="text-center">List of Suggested Users</h2>
+            <p th:if="${allUsers == null || allUsers.isEmpty()}" th:text="'You are friend (or will be) with everyone'">...</p>
+            <div th:unless="${allUsers == null || allUsers.isEmpty()}">
+                <div class="row">
+                    <div th:each="user : ${allUsers}" class="col-sm-3">
+                        <div class="card mt-4 mb-4">
+                            <div class="card-body text-center">
+                                <span class="card-text" th:text="${user.username}"></span>
+                            </div>
+                            <form class="card-footer text-center" th:action="@{/sendFriendRequest}" method="post">
+                                <input type="hidden" name="friendId" th:value="${user.id}" />
+                                <button class="btn btn-primary" type="submit">Friend Request</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+            <div class="col-sm-2" style="background-color:#C2B7C7;"></div>
+        </div>
+    </div>
+
+    <footer th:insert="~{common/footer :: footer}"></footer>
+
+    <script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/4.6.2/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>
